@@ -4,36 +4,23 @@ const prisma = new PrismaClient();
 
 export class UserService {
   async getAllUsers() {
-    try {
-      return await prisma.user.findMany();
-    } catch (error) {
-      throw new Error("Erro ao buscar usuários.");
-    }
+    return await prisma.user.findMany();
   }
 
   async getUserById(id: number) {
-    try {
-      const user = await prisma.user.findUnique({ where: { id } });
-      if (!user) {
-        throw new Error("Usuário não encontrado.");
-      }
-      return user;
-    } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        throw new Error(`Erro ao buscar usuário: ${error.message}`);
-      }
-      throw error;
+    const user = await prisma.user.findUnique({ where: { id } });
+    if (!user) {
+      throw new Error("Usuário não encontrado.");
     }
+    return user;
   }
 
   async createUser(userData: { firstName: string; lastName: string; email: string; password: string }) {
     try {
       return await prisma.user.create({ data: userData });
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        if (error.code === "P2002") {
-          throw new Error("Já existe um usuário com este e-mail.");
-        }
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        throw new Error("Já existe um usuário com este e-mail.");
       }
       throw new Error("Erro ao criar usuário.");
     }
@@ -47,10 +34,8 @@ export class UserService {
       }
       return updatedUser;
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        if (error.code === "P2002") {
-          throw new Error("Já existe um usuário com este e-mail.");
-        }
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+        throw new Error("Já existe um usuário com este e-mail.");
       }
       throw new Error("Erro ao atualizar usuário.");
     }
@@ -64,10 +49,8 @@ export class UserService {
       }
       return deletedUser;
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        if (error.code === "P2025") {
-          throw new Error("Usuário não encontrado.");
-        }
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
+        throw new Error("Usuário não encontrado.");
       }
       throw new Error("Erro ao deletar usuário.");
     }
