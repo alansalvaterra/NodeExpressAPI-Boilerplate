@@ -1,11 +1,13 @@
 {
-  "name": "backend-api-node-ts-prisma-postgresql-docker",
+  "name": "NodeExpressAPIBoilerplate",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
     "dev": "dotenv -e .env.local -- ts-node src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "migrate": "dotenv -e .env.local -- npx prisma migrate dev --name init --schema=./src/prisma/schema.prisma",
+    "dev:migrate": "npm run migrate && npm run dev"
   },
   "keywords": [],
   "author": "",
