@@ -1,4 +1,4 @@
-# Node.js + Express + Prisma + PostgreSQL Boilerplate
+# Node.js + Express + Prisma + PostgreSQL + Docker Boilerplate
 
 Este é um boilerplate para projetos backend usando Node.js, Express, Prisma e PostgreSQL. Ele foi projetado para ser modular, escalável e seguir boas práticas de desenvolvimento.
 
@@ -19,35 +19,7 @@ Este é um boilerplate para projetos backend usando Node.js, Express, Prisma e P
 2. Instale as dependências:
    ```bash
    npm install
-3. Configure o banco de dados:
-
-    - Para Desenvolvimento Local (usando .env.local):
-   
-     1.    Crie um arquivo .env.local na raiz do projeto e configure as variáveis de ambiente:
-        
-        DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
-        PORT=3000
-
-      2.  Substitua:
-  
-            USER: Nome do usuário do PostgreSQL;    
-            PASSWORD: Senha do usuário do PostgreSQL (escape caracteres especiais, se necessário);  
-            HOST: Endereço do banco de dados (localhost para local ou db para Docker);  
-            PORT: Porta do PostgreSQL (geralmente 5432);    
-            DATABASE: Nome do banco de dados (por exemplo, mydb).
-
-    - Para Docker (usando .env.docker):
-    1.    Crie um arquivo .env.docker na raiz do projeto e configure as variáveis de ambiente:
-        
-        DATABASE_URL="postgresql://USER:PASSWORD@db:5432/DATABASE?schema=public"
-        PORT=3000
-
-      2.  Substitua:
-
-            USER: Nome do usuário do PostgreSQL;    
-            PASSWORD: Senha do usuário do PostgreSQL (escape caracteres especiais, se necessário);  
-            DATABASE: Nome do banco de dados (por exemplo, mydb).
-
+3. Configure o banco de dados conforme instruções no .env.
 
 4. Inicie o servidor:
    1. Local:    
@@ -60,7 +32,7 @@ Este é um boilerplate para projetos backend usando Node.js, Express, Prisma e P
 
 ## Estrutura do Projeto
 
-    ```bash
+
     src/
     ├── controllers/        # Controladores para lidar com as requisições
     ├── services/           # Lógica de negócio
@@ -72,7 +44,7 @@ Este é um boilerplate para projetos backend usando Node.js, Express, Prisma e P
     ├── app.ts              # Configuração do Express
     ├── server.ts           # Inicialização do servidor
 
-## Rotas Disponíveis
+## Rotas Disponíveis (CRUD básico)
 GET /api/users: Retorna todos os usuários.
 
 GET /api/users/:id: Retorna um usuário pelo ID.
@@ -89,26 +61,5 @@ Helmet: Configura cabeçalhos de segurança HTTP.
 
 CORS: Restringe o acesso à API a origens específicas.
 
-Zod: Validação de dados de entrada para prevenir ataques de injeção.
+Zod: Validação de dados de entrada.
 
-## Próximas Melhorias
-Autenticação e Autorização com JWT.
-
-Proteção contra Ataques de Força Bruta com express-rate-limit.
-
-Personalização do Helmet para atender às necessidades do projeto.
-
-Logging e Monitoramento com Winston.
-
-## 🤝 Contribuição
-Contribuições são bem-vindas! Siga os passos abaixo:
-
-Faça um fork do projeto.
-
-Crie uma branch para sua feature (git checkout -b feature/newFeature).
-
-Commit suas mudanças (git commit -m 'Add some newFeature').
-
-Push para a branch (git push origin feature/newFeature).
-
-Abra um Pull Request.
