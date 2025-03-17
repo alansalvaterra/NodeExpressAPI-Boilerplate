@@ -26,8 +26,8 @@ Este é um boilerplate para projetos backend usando # Node.js + Express + TypeSc
    docker-compose up --build 
 
 5. (Opcional - Rodar localmente):   
-      ```bash
-         npm run dev:migrate  
+   ```bash
+   npm run dev:migrate  
 
 ## Estrutura do Projeto
 
