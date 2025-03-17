@@ -1,6 +1,6 @@
-# Node.js + Express + Prisma + PostgreSQL + Docker Boilerplate
+# Node.js + Express + TypeScript + Prisma + PostgreSQL + Docker [Boilerplate]
 
-Este é um boilerplate para projetos backend usando Node.js, Express, Prisma e PostgreSQL. Ele foi projetado para ser modular, escalável e seguir boas práticas de desenvolvimento.
+Este é um boilerplate para projetos backend usando # Node.js + Express + TypeScript + Prisma + PostgreSQL + Docker. Ele foi projetado para ser modular, escalável e seguir boas práticas de desenvolvimento.
 
 # 🚀 Começando
 

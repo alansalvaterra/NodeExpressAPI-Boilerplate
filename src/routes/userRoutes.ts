@@ -3,16 +3,17 @@ import { UserController } from "../controllers/UserController";
 import { UserService } from "../services/UserService";
 import { validate } from "../middlewares/validationMiddleware";
 import { createUserSchema, updateUserSchema } from "../schemas/userSchema";
+import { asyncWrapper } from "../utils/asyncWrapper"; // Importa o wrapper
 
 const router = Router();
 const userService = new UserService();
 const userController = new UserController(userService);
 
 // Rotas
-router.get("/users", (req, res) => userController.getAllUsers(req, res));
-router.get("/users/:id", (req, res) => userController.getUserById(req, res));
-router.post("/users", validate(createUserSchema), (req, res) => userController.createUser(req, res));
-router.put("/users/:id", validate(updateUserSchema), (req, res) => userController.updateUser(req, res));
-router.delete("/users/:id", (req, res) => userController.deleteUser(req, res));
+router.get("/users", asyncWrapper((req, res, next) => userController.getAllUsers(req, res, next)));
+router.get("/users/:id", asyncWrapper((req, res, next) => userController.getUserById(req, res, next)));
+router.post("/users", validate(createUserSchema), asyncWrapper((req, res, next) => userController.createUser(req, res, next)));
+router.put("/users/:id", validate(updateUserSchema), asyncWrapper((req, res, next) => userController.updateUser(req, res, next)));
+router.delete("/users/:id", asyncWrapper((req, res, next) => userController.deleteUser(req, res, next)));
 
 export default router;
