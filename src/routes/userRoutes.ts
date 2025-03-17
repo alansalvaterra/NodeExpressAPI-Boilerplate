@@ -3,7 +3,7 @@ import { UserController } from "../controllers/UserController";
 import { UserService } from "../services/UserService";
 import { validate } from "../middlewares/validationMiddleware";
 import { createUserSchema, updateUserSchema } from "../schemas/userSchema";
-import { asyncWrapper } from "../utils/asyncWrapper"; // Importa o wrapper
+import { asyncWrapper } from "../utils/asyncWrapper";
 
 const router = Router();
 const userService = new UserService();

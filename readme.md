@@ -15,34 +15,43 @@ Este é um boilerplate para projetos backend usando # Node.js + Express + TypeSc
 1. Clone o repositório:
    ```bash
    git clone https://github.com/alansalvaterra/NodeExpressAPI-Boilerplate.git
-   cd NodeExpressAPI-Boilerplate
 2. Instale as dependências:
    ```bash
+   cd NodeExpressAPI-Boilerplate
    npm install
-3. Configure o banco de dados conforme instruções no .env.
+3. Configure o banco de dados conforme instruções no .env.template
 
-4. Inicie o servidor:
-   1. Local:    
-        ```bash
-        npm run dev:migrate  
+4. Inicie o servidor:    
+   ```bash
+   docker-compose up --build 
 
-   2. Docker:   
-         ```bash
-        docker-compose up --build
+5. (Opcional - Rodar localmente):   
+      ```bash
+         npm run dev:migrate  
 
 ## Estrutura do Projeto
 
 
-    src/
-    ├── controllers/        # Controladores para lidar com as requisições
-    ├── services/           # Lógica de negócio
-    ├── repositories/       # Interações com o banco de dados
-    ├── middlewares/        # Middlewares personalizados
-    ├── routes/             # Definição das rotas
-    ├── schemas/            # Esquemas de validação com Zod
-    ├── utils/              # Utilitários (helpers, funções comuns)
-    ├── app.ts              # Configuração do Express
-    ├── server.ts           # Inicialização do servidor
+      src/
+         ├── controllers/        # Controladores para lidar com as requisições
+         ├── middlewares/        # Middlewares personalizados
+         ├── prisma/             # Configurações e migrations do Prisma
+         ├── routes/             # Definição das rotas
+         ├── schemas/            # Esquemas de validação com Zod
+         ├── services/           # Lógica de negócio
+         ├── utils/              # Utilitários (helpers, funções comuns)
+         ├── app.ts              # Configuração do Express
+         ├── server.ts           # Inicialização do servidor
+      .dockerignore
+      .env                       #Template para variáveis de ambiente
+      .gitignore
+      docker-compose.yml
+      Dockerfile
+      entrypoint.sh
+      package.json
+      README.md
+      tsconfig.json
+
 
 ## Rotas Disponíveis (CRUD básico)
 GET /api/users: Retorna todos os usuários.

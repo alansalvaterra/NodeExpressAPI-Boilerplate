@@ -5,11 +5,16 @@ const prisma = new PrismaClient();
 
 export class UserService {
   async getAllUsers() {
-    return await prisma.user.findMany();
+    return await prisma.user.findMany({
+      select: { id: true, firstName: true, lastName: true, email: true }, // Exclui o password
+    });
   }
 
   async getUserById(id: number) {
-    const user = await prisma.user.findUnique({ where: { id } });
+    const user = await prisma.user.findUnique({
+      where: { id },
+      select: { id: true, firstName: true, lastName: true, email: true }, // Exclui o password
+    });
     if (!user) {
       throw new AppError("Usuário não encontrado.", 404);
     }
@@ -18,7 +23,11 @@ export class UserService {
 
   async createUser(userData: { firstName: string; lastName: string; email: string; password: string }) {
     try {
-      return await prisma.user.create({ data: userData });
+      const newUser = await prisma.user.create({
+        data: userData,
+        select: { id: true, firstName: true, lastName: true, email: true }, // Exclui o password
+      });
+      return newUser;
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
         throw new AppError("Já existe um usuário com este e-mail.", 400);
@@ -29,7 +38,11 @@ export class UserService {
 
   async updateUser(id: number, userData: { firstName?: string; lastName?: string; email?: string; password?: string }) {
     try {
-      const updatedUser = await prisma.user.update({ where: { id }, data: userData });
+      const updatedUser = await prisma.user.update({
+        where: { id },
+        data: userData,
+        select: { id: true, firstName: true, lastName: true, email: true }, // Exclui o password
+      });
       return updatedUser;
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
@@ -44,8 +57,7 @@ export class UserService {
 
   async deleteUser(id: number) {
     try {
-      const deletedUser = await prisma.user.delete({ where: { id } });
-      return deletedUser;
+      await prisma.user.delete({ where: { id } });
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2025") {
         throw new AppError("Usuário não encontrado.", 404);

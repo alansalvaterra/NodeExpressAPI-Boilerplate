@@ -3,8 +3,6 @@ import * as dotenv from "dotenv";
 import helmetMiddleware from "./middlewares/helmetMiddleware";
 import corsMiddleware from "./middlewares/corsMiddleware";
 import { errorHandler } from './middlewares/errorHandler';
-import { validate } from './middlewares/validationMiddleware';
-import { createUserSchema, updateUserSchema } from './schemas/userSchema';
 import userRoutes from "./routes/userRoutes";
 
 dotenv.config();
@@ -17,15 +15,21 @@ const allowedOrigins = [
   'http://localhost:3000',   // Desenvolvimento
 ];
 
-// Middlewares
 app.use(express.json());
+
+// Middlewares Segurança
 app.use(helmetMiddleware);
 app.use(corsMiddleware);
 
 // Rotas
 app.use("/api", userRoutes);
 
-// Middleware de tratamento de erros (DEVE SER O ÚLTIMO MIDDLEWARE)
+// Middleware para rotas inexistentes
+app.use((req, res, next) => {
+  res.status(404).json({ success: false, message: "Rota não encontrada." });
+});
+
+// Middleware de tratamento de erros
 app.use(errorHandler as express.ErrorRequestHandler);
 
 app.listen(PORT, () => {
