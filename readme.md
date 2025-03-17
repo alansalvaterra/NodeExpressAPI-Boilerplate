@@ -25,7 +25,12 @@ Este é um boilerplate para projetos backend usando # Node.js + Express + TypeSc
    ```bash
    docker-compose up --build 
 
-5. (Opcional - Rodar localmente):   
+5. (Erro entypoint.sh) Caso retorne o erro:
+   
+   "app-1  | exec ./entrypoint.sh: no such file or directory"
+
+   Abra o arquivo entrypoint.sh com o Visual Studio Code ou NotePad++ e altere o formato de fim de linha de "CRLF" e selecione "LF" e salve.
+6. (Opcional - Rodar localmente):   
    ```bash
    npm run dev:migrate  
 
