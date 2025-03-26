@@ -34,10 +34,21 @@ Boilerplate moderno para criação de APIs RESTful usando **Node.js**, **Express
 
 ### 1. Clone o projeto
 
+<<<<<<< HEAD
 ```bash
 git clone https://github.com/alansalvaterra/NodeExpressAPI-Boilerplate.git
 cd NodeExpressAPI-Boilerplate
 ```
+=======
+5. (Erro entypoint.sh) Caso retorne o erro:
+   
+   "app-1  | exec ./entrypoint.sh: no such file or directory"
+
+   Abra o arquivo entrypoint.sh com o Visual Studio Code ou NotePad++ e altere o formato de fim de linha de "CRLF" e selecione "LF" e salve.
+6. (Opcional - Rodar localmente):   
+   ```bash
+   npm run dev:migrate  
+>>>>>>> 0218bdb04b62458073e66c486b70cf3370a083d8
 
 ### 2. Instale as dependências
 
