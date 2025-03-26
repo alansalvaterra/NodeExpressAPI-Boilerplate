@@ -1,30 +1,45 @@
-# Node.js + Express + TypeScript + Prisma + PostgreSQL + Docker [Boilerplate]
+# NodeExpressAPI-Boilerplate 🚀
 
-Este é um boilerplate para projetos backend usando # Node.js + Express + TypeScript + Prisma + PostgreSQL + Docker. Ele foi projetado para ser modular, escalável e seguir boas práticas de desenvolvimento.
+Boilerplate moderno para criação de APIs RESTful usando **Node.js**, **Express**, **TypeScript**, **Prisma** e **PostgreSQL**. Inclui suporte a **Docker** para facilitar o desenvolvimento e deploy.
 
-# 🚀 Começando
+## 🧱 Tecnologias Utilizadas
 
-### Pré-requisitos
+- [Node.js](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Prisma ORM](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Docker](https://www.docker.com/)
 
-- Node.js (v18 ou superior)
-- PostgreSQL
-- Docker (opcional, para rodar o PostgreSQL em container)
+## 📁 Estrutura de Pastas
 
-## Instalação
+```bash
+.
+├── src/
+│   ├── controllers/      # Controladores das rotas
+│   ├── middlewares/      # Middlewares (ex: tratamento de erros)
+│   ├── prisma/           # Migrations e schema do Prisma
+│   ├── routes/           # Definição das rotas
+│   ├── schemas/          # Validação de dados com Zod
+│   ├── services/         # Lógica de negócios
+│   ├── utils/            # Utilitários
+│   └── server.ts         # Arquivo principal da aplicação
+├── .env.template         # Variáveis de ambiente
+├── Dockerfile            # Dockerfile da aplicação
+├── docker-compose.yml    # Arquivo do Docker Compose
+└── entrypoint.sh         # Inicializar o container Docker
+```
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/alansalvaterra/NodeExpressAPI-Boilerplate.git
-2. Instale as dependências:
-   ```bash
-   cd NodeExpressAPI-Boilerplate
-   npm install
-3. Configure o banco de dados conforme instruções no .env.template
+## ⚙️ Instalação
 
-4. Inicie o servidor:    
-   ```bash
-   docker-compose up --build 
+### 1. Clone o projeto
 
+<<<<<<< HEAD
+```bash
+git clone https://github.com/alansalvaterra/NodeExpressAPI-Boilerplate.git
+cd NodeExpressAPI-Boilerplate
+```
+=======
 5. (Erro entypoint.sh) Caso retorne o erro:
    
    "app-1  | exec ./entrypoint.sh: no such file or directory"
@@ -33,47 +48,59 @@ Este é um boilerplate para projetos backend usando # Node.js + Express + TypeSc
 6. (Opcional - Rodar localmente):   
    ```bash
    npm run dev:migrate  
+>>>>>>> 0218bdb04b62458073e66c486b70cf3370a083d8
 
-## Estrutura do Projeto
+### 2. Instale as dependências
 
+```bash
+npm install
+```
 
-      src/
-         ├── controllers/        # Controladores para lidar com as requisições
-         ├── middlewares/        # Middlewares personalizados
-         ├── prisma/             # Configurações e migrations do Prisma
-         ├── routes/             # Definição das rotas
-         ├── schemas/            # Esquemas de validação com Zod
-         ├── services/           # Lógica de negócio
-         ├── utils/              # Utilitários (helpers, funções comuns)
-         ├── app.ts              # Configuração do Express
-         ├── server.ts           # Inicialização do servidor
-      .dockerignore
-      .env                       #Template para variáveis de ambiente
-      .gitignore
-      docker-compose.yml
-      Dockerfile
-      entrypoint.sh
-      package.json
-      README.md
-      tsconfig.json
+### 3. Configure o `.env`
 
+Crie um arquivo `.env` na raiz com o conteúdo:
 
-## Rotas Disponíveis (CRUD básico)
-GET /api/users: Retorna todos os usuários.
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/mydb
+PORT=3000
+```
 
-GET /api/users/:id: Retorna um usuário pelo ID.
+### 4. Configure o banco de dados com Prisma
 
-POST /api/users: Cria um novo usuário.
+```bash
+npx prisma migrate dev --name init
+```
 
-PUT /api/users/:id: Atualiza um usuário pelo ID.
+### 5. Inicie o servidor
 
-DELETE /api/users/:id: Deleta um usuário pelo ID.
+```bash
+npm run dev
+```
 
+## 🐳 Usando com Docker
 
-## Segurança
-Helmet: Configura cabeçalhos de segurança HTTP.
+Certifique-se de ter o Docker e Docker Compose instalados. Depois, execute:
 
-CORS: Restringe o acesso à API a origens específicas.
+```bash
+docker-compose up --build
+```
 
-Zod: Validação de dados de entrada.
+A aplicação estará disponível em `http://localhost:3000`
 
+## 📌 Endpoints Padrão
+
+As rotas da API estão organizadas dentro de src/routes/. O exemplo abaixo corresponde ao módulo de usuários, já implementado no projeto:
+
+- GET	    `/users`	    Lista todos os usuários
+- GET	    `/users/:id`	Busca um usuário pelo ID
+- POST	    `/users`	    Cria um novo usuário
+- PUT	    `/users/:id`	Atualiza um usuário existente
+- DELETE	`/users/:id`	Remove um usuário do sistema
+
+## 🧑‍💻 Autor
+
+Feito com 💙 por [Alan Salvaterra](https://github.com/alansalvaterra)
+
+---
+
+> Sinta-se à vontade para abrir *issues* ou enviar *pull requests*!
