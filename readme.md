@@ -1,4 +1,4 @@
-# NodeExpressAPI-Boilerplate 🚀
+# nodejs-express-prisma-typescript-starter 🚀
 
 Boilerplate moderno para criação de APIs RESTful usando **Node.js**, **Express**, **TypeScript**, **Prisma** e **PostgreSQL**. Inclui suporte a **Docker** para facilitar o desenvolvimento e deploy.
 
@@ -34,8 +34,9 @@ Boilerplate moderno para criação de APIs RESTful usando **Node.js**, **Express
 
 ### 1. Clone o projeto
 ```bash
-git clone https://github.com/alansalvaterra/NodeExpressAPI-Boilerplate.git
-cd NodeExpressAPI-Boilerplate
+git clone https://github.com/alansalvaterra/nodejs-express-prisma-typescript-starter.git
+cd nodejs-express-prisma-typescript-starter
+
 ```
 
 ### 2. Instale as dependências
@@ -44,19 +45,22 @@ cd NodeExpressAPI-Boilerplate
 npm install
 ```
 
-### 3. Configure o `.env`
+### 3. Configure o ambiente local
 
-Crie um arquivo `.env` na raiz com o conteúdo:
+Crie um arquivo .env.local na raiz do projeto com base no .env.template:
 
 ```env
 DATABASE_URL=postgresql://user:password@localhost:5432/mydb
 PORT=3000
 ```
 
-### 4. Configure o banco de dados com Prisma
+💡 Certifique-se de que seu banco de dados PostgreSQL está rodando e que o banco mydb exista.
+
+### 4. Configure o Prisma
 
 ```bash
-npx prisma migrate dev --name init
+npx prisma generate --schema=./src/prisma/schema.prisma
+npx prisma migrate dev --schema=./src/prisma/schema.prisma
 ```
 
 ### 5. Inicie o servidor
@@ -67,13 +71,42 @@ npm run dev
 
 ## 🐳 Usando com Docker
 
-Certifique-se de ter o Docker e Docker Compose instalados. Depois, execute:
+1. Pré-requisitos
+   
+- Docker
+
+- Docker Compose
+
+
+2. Crie um arquivo .env.docker na raiz do projeto com base no .env.template:
+
+```
+DATABASE_URL=postgresql://user:password@db:5432/mydb
+PORT=3000
+```
+
+(As credenciais devem bater com as do docker-compose.yml)
+
+
+3. Em seguida, rode o projeto com:
 
 ```bash
 docker-compose up --build
 ```
 
-A aplicação estará disponível em `http://localhost:3000`
+## ⚠️ Importante para usuários Windows
+
+Se estiver no Windows, o arquivo entrypoint.sh pode ter o formato de fim de linha incorreto (CRLF), o que impede sua execução no container Linux.
+
+✅ Solução:
+Abra o arquivo entrypoint.sh no Notepad++ ou VS Code e:
+
+No Notepad++: menu Editar → Conversão de Fim de Linha → Converter para UNIX (LF)
+
+No VS Code: clique em CRLF no canto inferior direito e altere para LF
+
+Salve o arquivo, e então o comando abaixo funcionará corretamente:
+
 
 ## 📌 Endpoints Padrão
 
