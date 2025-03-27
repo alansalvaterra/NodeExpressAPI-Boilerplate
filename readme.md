@@ -1,4 +1,4 @@
-# nodejs-express-prisma-typescript-starter 🚀
+# nodejs-express-prisma-typescript-API-starter 🚀
 
 Boilerplate moderno para criação de APIs RESTful usando **Node.js**, **Express**, **TypeScript**, **Prisma** e **PostgreSQL**. Inclui suporte a **Docker** para facilitar o desenvolvimento e deploy.
 
